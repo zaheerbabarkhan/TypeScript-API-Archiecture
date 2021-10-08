@@ -1,0 +1,358 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"SaveUpdateResAdmin": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"FirstName": {
+						"type": "string"
+					},
+					"LastName": {
+						"type": "string"
+					},
+					"Designation": {
+						"type": "string"
+					},
+					"Cell": {
+						"type": "string"
+					},
+					"JoinDate": {
+						"type": "string"
+					},
+					"Address": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string"
+					},
+					"updatedAt": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"FirstName",
+					"LastName",
+					"Designation",
+					"Cell",
+					"JoinDate",
+					"Address"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"GetReqAdmin": {
+				"properties": {
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"SaveReqAdmin": {
+				"properties": {
+					"FirstName": {
+						"type": "string"
+					},
+					"LastName": {
+						"type": "string"
+					},
+					"Designation": {
+						"type": "string"
+					},
+					"Cell": {
+						"type": "string"
+					},
+					"JoinDate": {
+						"type": "string"
+					},
+					"Address": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"FirstName",
+					"LastName",
+					"Designation",
+					"Cell",
+					"JoinDate",
+					"Address"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"UpdateReqAdmin": {
+				"properties": {
+					"_id": {
+						"type": "string"
+					},
+					"FirstName": {
+						"type": "string"
+					},
+					"LastName": {
+						"type": "string"
+					},
+					"Designation": {
+						"type": "string"
+					},
+					"Cell": {
+						"type": "string"
+					},
+					"JoinDate": {
+						"type": "string"
+					},
+					"Address": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"_id",
+					"FirstName",
+					"LastName",
+					"Designation",
+					"Cell",
+					"JoinDate",
+					"Address"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DeleteReqAdmin": {
+				"properties": {
+					"id": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"id"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "orcalo-api-architecture",
+		"version": "1.0.0",
+		"description": "this is the description of the file",
+		"license": {
+			"name": "ISC"
+		},
+		"contact": {}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/admin/getAdmin": {
+			"post": {
+				"operationId": "GetAdmin",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResAdmin"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"name": "Syed Rahat Murtaza",
+											"email": "rahat_murtaza@outlook.com",
+											"password": "rahat1996"
+										}
+									}
+								}
+							}
+						}
+					}
+				},
+				"description": "Retrieves the details of an existing user.\r\nSupply the unique user ID from either and receive corresponding user details.",
+				"tags": [
+					"Admin"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/GetReqAdmin"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/admin/EditUser": {
+			"post": {
+				"operationId": "SaveAdmin",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResAdmin"
+								},
+								"examples": {
+									"Example 1": {
+										"value": {
+											"_id": "507f1f77bcf86cd799439011",
+											"FirstName": "FirstName",
+											"LastName": "Last Name",
+											"Designation": "Designation",
+											"Cell": "0306XXXXXXX",
+											"JoinDate": "20-Sep 2021",
+											"Address": "G 10/3 Islamabad"
+										}
+									}
+								}
+							}
+						}
+					},
+					"403": {
+						"description": "Forbidden Request"
+					},
+					"409": {
+						"description": "User already exist"
+					}
+				},
+				"description": "Retrieves the details of an existing user.\r\nSupply the unique user ID from either and receive corresponding user details.",
+				"summary": "You will be able to register user and generate the accessToken with it",
+				"tags": [
+					"Save Admin",
+					"Admin"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/SaveReqAdmin"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/admin/updateAdmin": {
+			"put": {
+				"operationId": "UpdateAdmin",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/SaveUpdateResAdmin"
+								}
+							}
+						}
+					}
+				},
+				"description": "Retrieves the details of an existing user.\r\nSupply the unique user ID from either and receive corresponding user details.",
+				"tags": [
+					"Admin"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/UpdateReqAdmin"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/admin/deleteAdmin": {
+			"delete": {
+				"operationId": "DeleteAdmin",
+				"responses": {
+					"200": {
+						"description": "Admin Deleted",
+						"content": {
+							"application/json": {
+								"schema": {}
+							}
+						}
+					}
+				},
+				"description": "Retrieves the details of an existing user.\r\nSupply the unique user ID from either and receive corresponding user details.",
+				"tags": [
+					"Admin"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/DeleteReqAdmin"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/admin/getAdminList": {
+			"get": {
+				"operationId": "GetAdminList",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/SaveUpdateResAdmin"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Admin"
+				],
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	],
+	"tags": [
+		{
+			"name": "Admin",
+			"description": "Here all the operations of the users are given",
+			"externalDocs": {
+				"description": "Find more about user",
+				"url": "http://swagger.io"
+			}
+		}
+	]
+}
